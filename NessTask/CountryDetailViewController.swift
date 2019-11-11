@@ -25,6 +25,7 @@ class CountryDetailViewController: UIViewController {
         
         print("countryIdStr..\(countryId)")
         getCountriesDetailAPICall()
+        
         // Do any additional setup after loading the view.
     }
     @IBAction func backButtonAction(_ sender: Any) {
@@ -34,23 +35,33 @@ class CountryDetailViewController: UIViewController {
     
 }
 //MARK: API Implementation..
+
 extension CountryDetailViewController{
+    
     func  getCountriesDetailAPICall() {
+        
         self.view.activityStartAnimating(activityColor: UIColor.gray)
         let urlStr = "https://restcountries.eu/rest/v2/callingcode/" + countryId
         
         apiMethodCall(urlStr: urlStr, parameters: ["":""]) { (data, error) in
+            
             if (error != nil){
+                
                 self.view.activityStopAnimating()
                 print("error is ::\(String(describing: error?.localizedDescription))");
+                
             }
             else{
                 DispatchQueue.main.async {
+                    
                     self.view.activityStopAnimating()
+                    
                 }
                 if let dataArray:[Any] = data as? [Any] {
-                    print("data array..\(dataArray)")
+                    //print("data array..\(dataArray)")
+                    
                     DispatchQueue.main.async {
+                        
                         if let dataDictionary:[String:Any] = dataArray[0] as? [String:Any]{
                             // image
                             if let imageUrl:String = dataDictionary["flag"] as? String{

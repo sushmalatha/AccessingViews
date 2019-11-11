@@ -20,15 +20,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         getCountriesListAPICall()
         // Do any additional setup after loading the view.
     }
+    
     //MARK: UITableViewDelegates snd Datasourse.
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return self.countriesListArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "Cell")
         
-       if let dataDict:[String:Any] = (countriesListArray[indexPath.row] as? [String:Any]){
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "Cell")
+        if let dataDict:[String:Any] = (countriesListArray[indexPath.row] as? [String:Any]){
             
             if let countryName:String = dataDict["name"] as? String{
             
@@ -48,8 +51,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         cell.layer.cornerRadius = 5
         cell.layer.borderWidth = 2
         cell.layer.shadowOffset = CGSize(width: -1, height: 1)
+        
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
@@ -75,8 +80,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func  getCountriesListAPICall() {
         
         let urlStr = "https://restcountries.eu/rest/v2/all"
-        
         apiMethodCall(urlStr: urlStr, parameters: ["":""]) { (data, error) in
+            
             if (error != nil){
                 print("error is ::\(String(describing: error?.localizedDescription))");
             }

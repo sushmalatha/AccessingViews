@@ -13,6 +13,7 @@ import WebKit
 extension UIView{
     
     func activityStartAnimating(activityColor: UIColor) {
+        
         let backgroundView = UIView()
         backgroundView.frame = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
         backgroundView.backgroundColor = UIColor.clear
@@ -35,6 +36,7 @@ extension UIView{
     }
     
     func activityStopAnimating() {
+        
         if let background = viewWithTag(475647){
             background.removeFromSuperview()
         }
